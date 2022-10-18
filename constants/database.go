@@ -1,9 +1,11 @@
 package constants
 
+import "os"
+
 const (
 	DatabaseType string = `mysql`
 )
 
 var (
-	DSN string = "testes:testes@localhost:3306/testes?charset=utf8mb4&parseTime=True&loc=Local"
+	DSN string = os.Getenv("DATABASE_URL")
 )

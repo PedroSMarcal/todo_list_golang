@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/PedroSMarcal/todo/constants"
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -14,7 +14,7 @@ func NewConnectionTODO() *gorm.DB {
 
 func openConnectionTodoDatabase() *gorm.DB {
 
-	databaseConnection, err := gorm.Open(mysql.Open(constants.DSN), &gorm.Config{})
+	databaseConnection, err := gorm.Open(postgres.New(postgres.Config{DSN: constants.DSN}), &gorm.Config{})
 	if err != nil {
 		log.Fatalln("Could not connect")
 	}
