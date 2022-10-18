@@ -1,8 +1,10 @@
 package server
 
 import (
+	"log"
 	"net/http"
 
+	"github.com/PedroSMarcal/todo/config"
 	"github.com/PedroSMarcal/todo/core/todo"
 )
 
@@ -15,5 +17,8 @@ func Start() {
 
 	setRoutes(mux)
 
-	http.ListenAndServe(":3333", mux)
+	err := http.ListenAndServe(":"+config.Envs.PORTS, mux)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
