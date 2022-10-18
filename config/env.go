@@ -22,5 +22,5 @@ func LoadEnv() {
 	}
 
 	Envs.DSN = os.Getenv("DATABASE_URL")
-	Envs.PORTS = os.Getenv("PORTS")
+	Envs.PORTS = os.Getenv("PORT")
 }
