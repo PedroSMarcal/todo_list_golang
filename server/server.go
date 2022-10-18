@@ -9,6 +9,11 @@ import (
 )
 
 func setRoutes(mux *http.ServeMux) {
+	mux.HandleFunc("/create", todo.CreateTask)
+	mux.HandleFunc("/update", todo.UpdateTask)
+	mux.HandleFunc("/finish", todo.Finish)
+	mux.HandleFunc("/get", todo.GetTask)
+
 	mux.HandleFunc("/health", todo.HealthCheck)
 }
 
