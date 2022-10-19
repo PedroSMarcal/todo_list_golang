@@ -7,11 +7,17 @@ import (
 )
 
 func HealthCheck(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
 	strings.Split(r.RequestURI, "/")
 	io.WriteString(w, "This is my Website\n ")
 }
 
 func GetTask(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 	switch r.Method {
 	case "GET":

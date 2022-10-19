@@ -7,6 +7,5 @@ import (
 
 func main() {
 	config.GetEnvironmentVariables()
-	// database.StartMigrations()
 	server.Start()
 }

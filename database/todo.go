@@ -1,29 +1,35 @@
 package database
 
 import (
+	"context"
 	"log"
 
-	"github.com/PedroSMarcal/todo_list_golang/tools"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
+	"github.com/PedroSMarcal/todo_list_golang/config"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-func NewConnectionTODO() *gorm.DB {
-	return openConnectionTodoDatabase()
-}
+var mongoDB *mongo.Database
 
-func openConnectionTodoDatabase() *gorm.DB {
-
-	databaseConnection, err := gorm.Open(postgres.Open(tools.CreateDSN()), &gorm.Config{})
+func MongoClient() *mongo.Database {
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(config.EnvVariable.MongoURI))
 	if err != nil {
-		log.Fatalln("Could not connect")
+		log.Fatal("Invalid connection")
 	}
 
-	return databaseConnection
+	if err := client.Ping(context.TODO(), readpref.Primary()); err != nil {
+		panic(err)
+	}
+
+	mongoDB = client.Database(config.EnvVariable.DatabaseName)
+
+	return mongoDB
 }
 
-func StartMigrations() {
-
-	db := openConnectionTodoDatabase()
-	runTodoMigration(db)
+func ConnectDatabase() *mongo.Database {
+	if mongoDB == nil {
+		MongoClient()
+	}
+	return mongoDB
 }
