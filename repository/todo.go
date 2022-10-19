@@ -1,15 +1,26 @@
 package repository
 
+import (
+	"github.com/PedroSMarcal/todo/models"
+	"gorm.io/gorm"
+)
+
 type (
-	todoRepository struct {
+	TodoRepository interface {
+		GetAll(tasks *models.Task) error
 	}
 
-	TodoRepository interface {
-		openConnection()
+	todoRepository struct {
+		db *gorm.DB
 	}
 )
 
-func (r *todoRepository) openConnection() {
-	r.openConnection()
+func (r *todoRepository) GetAll(tasks *models.Task) error {
+	result := r.db.Find(&tasks)
 
+	if result.RowsAffected == 0 {
+		return gorm.ErrRecordNotFound
+	}
+
+	return nil
 }
