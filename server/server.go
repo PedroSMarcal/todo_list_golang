@@ -6,6 +6,7 @@ import (
 
 	"github.com/PedroSMarcal/todo/config"
 	"github.com/PedroSMarcal/todo/core/todo"
+	"github.com/PedroSMarcal/todo/tools"
 )
 
 func setRoutes(mux *http.ServeMux) {
@@ -22,7 +23,9 @@ func Start() {
 
 	setRoutes(mux)
 
-	err := http.ListenAndServe(":"+config.Envs.PORTS, mux)
+	port := config.Envs.PORT
+	tools.SetPort(&port)
+	err := http.ListenAndServe(port, mux)
 	if err != nil {
 		log.Fatal(err)
 	}

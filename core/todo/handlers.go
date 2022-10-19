@@ -1,12 +1,9 @@
 package todo
 
 import (
-	"encoding/json"
 	"io"
 	"net/http"
 	"strings"
-
-	"github.com/PedroSMarcal/todo/models"
 )
 
 func HealthCheck(w http.ResponseWriter, r *http.Request) {
@@ -20,18 +17,18 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 	case "GET":
 		values := r.URL.Query()
 		id := values.Get("id")
-		tasks := models.Task{}
+		// tasks := models.Task{}
 
 		if id == "" {
-			if err := getAllTodosService(&tasks); err != nil {
-				w.WriteHeader(http.StatusNoContent)
-				io.WriteString(w, "Nothing found")
-				return
-			}
-
-			w.WriteHeader(http.StatusCreated)
-			json.NewEncoder(w).Encode(tasks)
+			// if err := getAllTodosService(&tasks); err != nil {
+			w.WriteHeader(http.StatusNoContent)
+			io.WriteString(w, "Nothing found")
 			return
+			// }
+
+			// w.WriteHeader(http.StatusCreated)
+			// json.NewEncoder(w).Encode(tasks)
+			// return
 		}
 
 		io.WriteString(w, "Get "+id)
