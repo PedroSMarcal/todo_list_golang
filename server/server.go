@@ -22,7 +22,7 @@ func Start() {
 
 	setRoutes(mux)
 
-	err := http.ListenAndServe(os.Getenv("PORT"), mux)
+	err := http.ListenAndServe(":"+os.Getenv("PORT"), mux)
 	if err != nil {
 		log.Fatal(err)
 	}
