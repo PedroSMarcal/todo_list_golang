@@ -1,5 +1,5 @@
 package constants
 
 const (
-	DatabaseType string = `mysql`
+	DatabaseType string = `postgres`
 )

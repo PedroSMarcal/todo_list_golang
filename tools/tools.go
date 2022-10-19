@@ -3,7 +3,7 @@ package tools
 import (
 	"fmt"
 
-	"github.com/PedroSMarcal/todo_list_golang/config"
+	"github.com/PedroSMarcal/todo_list_golang/constants"
 )
 
 func SetPort(port *string) {
@@ -12,10 +12,10 @@ func SetPort(port *string) {
 
 func CreateDSN() string {
 	return fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
-		config.TodoDatabase.Host,
-		config.TodoDatabase.User,
-		config.TodoDatabase.Password,
-		config.TodoDatabase.Database,
-		config.TodoDatabase.Port,
+		constants.TodoDatabaseHost,
+		constants.TodoDatabaseUser,
+		constants.TodoDatabasePassword,
+		constants.TodoDatabaseDatabase,
+		constants.TodoDatabasePort,
 	)
 }
