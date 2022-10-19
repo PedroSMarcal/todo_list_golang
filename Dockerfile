@@ -1,7 +1,12 @@
-FROM golang:1.18.3-alpine
+FROM golang
+
 RUN mkdir /app
-ADD go.mod go.sum . /app/
+
+ADD . /app
 
 WORKDIR /app
-RUN go build -o main .
+
+RUN go build -o main.go
+
+EXPOSE 8080
 CMD ["/app/main"]
