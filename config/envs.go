@@ -12,6 +12,7 @@ type EnvironmentVar struct {
 	DbHost     string
 	DbPort     string
 	DbName     string
+	URI        string
 	Port       string
 }
 
@@ -21,11 +22,12 @@ func GetEnvironmentVariables() *EnvironmentVar {
 	godotenv.Load(".env")
 
 	EnvVariable = &EnvironmentVar{
-		DbUser:     os.Getenv("DB_USER"),
-		DbPassword: os.Getenv("DB_PASSWORD"),
-		DbHost:     os.Getenv("DB_HOST"),
-		DbPort:     os.Getenv("DB_PORT"),
-		DbName:     os.Getenv("DB_NAME"),
+		DbHost:     os.Getenv("TODO_HOST"),
+		DbName:     os.Getenv("TODO_DATABASE"),
+		DbPort:     os.Getenv("TODO_PORT"),
+		DbUser:     os.Getenv("TODO_USER"),
+		DbPassword: os.Getenv("TODO_PASSWORD"),
+		URI:        os.Getenv("DATABASE_URL"),
 		Port:       os.Getenv("PORT"),
 	}
 
