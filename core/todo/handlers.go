@@ -1,9 +1,13 @@
 package todo
 
 import (
+	"encoding/json"
 	"io"
+	"log"
 	"net/http"
 	"strings"
+
+	"github.com/PedroSMarcal/todo_list_golang/coll"
 )
 
 func HealthCheck(w http.ResponseWriter, r *http.Request) {
@@ -23,19 +27,28 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 	case "GET":
 		values := r.URL.Query()
 		id := values.Get("id")
-		// tasks := models.Task{}
 
 		if id == "" {
-			// if err := getAllTodosService(&tasks); err != nil {
-			io.WriteString(w, "Nothing found")
-			w.WriteHeader(http.StatusNoContent)
-			// json.NewEncoder(w).Encode(tasks)
-			return
-			// }
+			value, err := getAllTodosService()
+			if err != nil {
+				io.WriteString(w, err.Error())
+				w.WriteHeader(http.StatusNoContent)
+				return
+			}
 
-			// w.WriteHeader(http.StatusCreated)
-			// json.NewEncoder(w).Encode(tasks)
-			// return
+			task := coll.Task{}
+			s, err := json.Marshal(value)
+			if err != nil {
+				log.Print(err)
+			}
+
+			err = json.Unmarshal(s, &task)
+			if err != nil {
+				log.Print(err)
+			}
+
+			json.NewEncoder(w).Encode(&task)
+			return
 		}
 
 		io.WriteString(w, "Get "+id)

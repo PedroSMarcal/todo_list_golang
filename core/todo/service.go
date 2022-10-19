@@ -1,18 +1,18 @@
 package todo
 
-// import (
-// 	"https://github.com/PedroSMarcal/todo_list_golang/models"
-// 	"https://github.com/PedroSMarcal/todo_list_golang/repository"
-// )
+import (
+	"github.com/PedroSMarcal/todo_list_golang/repository"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 // var repo repository.TodoRepository
 
-// func getAllTodosService(tasks *models.Task) error {
-// 	err := repo.GetAll(tasks)
+func getAllTodosService() ([]primitive.M, error) {
+	value, err := repository.ShowRepository()
 
-// 	if err != nil {
-// 		return err
-// 	}
+	if err != nil {
+		return nil, err
+	}
 
-// 	return nil
-// }
+	return value, nil
+}
