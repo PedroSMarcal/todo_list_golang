@@ -11,8 +11,7 @@ import (
 var Envs EnvsStruct
 
 type EnvsStruct struct {
-	PORTS string
-	DSN   string
+	DSN string
 }
 
 func LoadEnv() {
@@ -22,5 +21,4 @@ func LoadEnv() {
 	}
 
 	Envs.DSN = os.Getenv("DATABASE_URL")
-	Envs.PORTS = os.Getenv("PORT")
 }
