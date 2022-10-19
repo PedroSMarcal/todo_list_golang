@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/PedroSMarcal/todo/constants"
+	"github.com/PedroSMarcal/todo_list_golang/constants"
 	"github.com/joho/godotenv"
 )
 

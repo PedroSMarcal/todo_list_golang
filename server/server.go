@@ -4,9 +4,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/PedroSMarcal/todo/config"
-	"github.com/PedroSMarcal/todo/core/todo"
-	"github.com/PedroSMarcal/todo/tools"
+	"github.com/PedroSMarcal/todo_list_golang/config"
+	"github.com/PedroSMarcal/todo_list_golang/core/todo"
+	"github.com/PedroSMarcal/todo_list_golang/tools"
 )
 
 func setRoutes(mux *http.ServeMux) {

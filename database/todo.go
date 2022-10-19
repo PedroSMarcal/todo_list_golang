@@ -3,7 +3,7 @@ package database
 import (
 	"log"
 
-	"github.com/PedroSMarcal/todo/config"
+	"github.com/PedroSMarcal/todo_list_golang/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

@@ -1,18 +1,18 @@
 package todo
 
-import (
-	"github.com/PedroSMarcal/todo/models"
-	"github.com/PedroSMarcal/todo/repository"
-)
+// import (
+// 	"https://github.com/PedroSMarcal/todo_list_golang/models"
+// 	"https://github.com/PedroSMarcal/todo_list_golang/repository"
+// )
 
-var repo repository.TodoRepository
+// var repo repository.TodoRepository
 
-func getAllTodosService(tasks *models.Task) error {
-	err := repo.GetAll(tasks)
+// func getAllTodosService(tasks *models.Task) error {
+// 	err := repo.GetAll(tasks)
 
-	if err != nil {
-		return err
-	}
+// 	if err != nil {
+// 		return err
+// 	}
 
-	return nil
-}
+// 	return nil
+// }

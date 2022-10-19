@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/PedroSMarcal/todo/models"
+	"github.com/PedroSMarcal/todo_list_golang/models"
 	"gorm.io/gorm"
 )
 

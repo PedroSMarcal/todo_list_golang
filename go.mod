@@ -1,4 +1,4 @@
-module github.com/PedroSMarcal/todo
+module github.com/PedroSMarcal/todo_list_golang
 
 go 1.19
 

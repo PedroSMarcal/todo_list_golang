@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/PedroSMarcal/todo/config"
-	"github.com/PedroSMarcal/todo/server"
+	"github.com/PedroSMarcal/todo_list_golang/config"
+	"github.com/PedroSMarcal/todo_list_golang/server"
 )
 
 func main() {
