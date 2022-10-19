@@ -3,8 +3,7 @@ package database
 import (
 	"log"
 
-	"github.com/PedroSMarcal/todo/config"
-	"gorm.io/driver/postgres"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
@@ -14,7 +13,7 @@ func NewConnectionTODO() *gorm.DB {
 
 func openConnectionTodoDatabase() *gorm.DB {
 
-	databaseConnection, err := gorm.Open(postgres.New(postgres.Config{DSN: config.Envs.DSN}), &gorm.Config{})
+	databaseConnection, err := gorm.Open(sqlite.Open("todo.db"), &gorm.Config{})
 	if err != nil {
 		log.Fatalln("Could not connect")
 	}
