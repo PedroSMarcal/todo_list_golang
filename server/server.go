@@ -30,3 +30,16 @@ func Start() {
 		log.Fatal(err)
 	}
 }
+
+func NewStart() {
+	mux := http.NewServeMux()
+
+	setRoutes(mux)
+
+	port := os.Getenv("PORT")
+	tools.SetPort(&port)
+	err := http.ListenAndServe(port, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+}

@@ -8,5 +8,5 @@ import (
 func main() {
 	config.LoadEnv()
 	// database.StartMigrations()
-	server.Start()
+	server.NewStart()
 }
