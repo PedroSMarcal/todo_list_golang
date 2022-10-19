@@ -1,39 +1,33 @@
 package config
 
-// import (
-// 	"log"
-// 	"os"
+import (
+	"os"
 
-// 	"github.com/PedroSMarcal/todo_list_golang/constants"
-// 	"github.com/joho/godotenv"
-// )
+	"github.com/joho/godotenv"
+)
 
-// var Envs AppEnvs
-// var TodoDatabase TodoDatabaseEnvs
+type EnvironmentVar struct {
+	DbUser     string
+	DbPassword string
+	DbHost     string
+	DbPort     string
+	DbName     string
+	Port       string
+}
 
-// type TodoDatabaseEnvs struct {
-// 	User     string
-// 	Password string
-// 	Host     string
-// 	Port     string
-// 	Database string
-// }
+var EnvVariable *EnvironmentVar
 
-// type AppEnvs struct {
-// 	PORT string
-// }
+func GetEnvironmentVariables() *EnvironmentVar {
+	godotenv.Load(".env")
 
-// func LoadEnv() {
-// 	err := godotenv.Load()
-// 	if err != nil {
-// 		log.Fatal(constants.EnvError)
-// 	}
+	EnvVariable = &EnvironmentVar{
+		DbUser:     os.Getenv("DB_USER"),
+		DbPassword: os.Getenv("DB_PASSWORD"),
+		DbHost:     os.Getenv("DB_HOST"),
+		DbPort:     os.Getenv("DB_PORT"),
+		DbName:     os.Getenv("DB_NAME"),
+		Port:       os.Getenv("PORT"),
+	}
 
-// 	TodoDatabase.User = os.Getenv("TODO_USER")
-// 	TodoDatabase.Password = os.Getenv("TODO_PASSWORD")
-// 	TodoDatabase.Host = os.Getenv("TODO_HOST")
-// 	TodoDatabase.Port = os.Getenv("TODO_PORT")
-// 	TodoDatabase.Database = os.Getenv("TODO_DATABASE")
-
-// 	Envs.PORT = os.Getenv("PORT")
-// }
+	return EnvVariable
+}

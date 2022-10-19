@@ -4,7 +4,10 @@ go 1.19
 
 require gorm.io/gorm v1.24.0
 
-require gorm.io/driver/postgres v1.4.4
+require (
+	github.com/joho/godotenv v1.4.0
+	gorm.io/driver/postgres v1.4.4
+)
 
 require (
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
