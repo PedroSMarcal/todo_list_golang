@@ -3,8 +3,8 @@ package server
 import (
 	"log"
 	"net/http"
+	"os"
 
-	"github.com/PedroSMarcal/todo_list_golang/config"
 	"github.com/PedroSMarcal/todo_list_golang/core/todo"
 	"github.com/PedroSMarcal/todo_list_golang/tools"
 )
@@ -23,7 +23,7 @@ func Start() {
 
 	setRoutes(mux)
 
-	port := config.Envs.PORT
+	port := os.Getenv("PORT")
 	tools.SetPort(&port)
 	err := http.ListenAndServe(port, mux)
 	if err != nil {
