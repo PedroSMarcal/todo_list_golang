@@ -38,7 +38,7 @@ func NewStart() {
 
 	port := os.Getenv("PORT")
 	tools.SetPort(&port)
-	err := http.ListenAndServe(port, nil)
+	err := http.ListenAndServe(port, mux)
 	if err != nil {
 		log.Fatal(err)
 	}
