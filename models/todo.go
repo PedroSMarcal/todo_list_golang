@@ -11,7 +11,6 @@ type (
 		ID        uint `gorm:"primaryKey; autoIncrement; unique; <-:false"`
 		Name      string
 		Content   string
-		Author    string
 		EndDate   time.Time
 		CreatedAt time.Time
 		DeletedAt gorm.DeletedAt `gorm:"index"`
