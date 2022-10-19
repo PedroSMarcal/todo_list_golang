@@ -1,0 +1,19 @@
+name: Container Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: golang:1.18.3-alpine
+
+    steps:
+      - name: Test Coverage
+        run: make covereage
+
+      - name: Run Commands
+        run: |
+          sudo rit -v
+          sudo go version

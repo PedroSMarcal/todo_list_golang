@@ -8,11 +8,19 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var Envs EnvsStruct
+var Envs AppEnvs
+var TodoDatabase TodoDatabaseEnvs
 
-type EnvsStruct struct {
+type TodoDatabaseEnvs struct {
+	User     string
+	Password string
+	Host     string
+	Port     string
+	Database string
+}
+
+type AppEnvs struct {
 	PORT string
-	DSN  string
 }
 
 func LoadEnv() {
@@ -21,6 +29,11 @@ func LoadEnv() {
 		log.Fatal(constants.EnvError)
 	}
 
-	Envs.DSN = os.Getenv("DATABASE_URL")
+	TodoDatabase.User = os.Getenv("TODO_USER")
+	TodoDatabase.Password = os.Getenv("TODO_PASSWORD")
+	TodoDatabase.Host = os.Getenv("TODO_HOST")
+	TodoDatabase.Port = os.Getenv("TODO_PORT")
+	TodoDatabase.Database = os.Getenv("TODO_DATABASE")
+
 	Envs.PORT = os.Getenv("PORT")
 }

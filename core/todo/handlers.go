@@ -21,8 +21,9 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 
 		if id == "" {
 			// if err := getAllTodosService(&tasks); err != nil {
-			w.WriteHeader(http.StatusNoContent)
 			io.WriteString(w, "Nothing found")
+			w.WriteHeader(http.StatusNoContent)
+			// json.NewEncoder(w).Encode(tasks)
 			return
 			// }
 

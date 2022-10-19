@@ -3,7 +3,7 @@ package database
 import (
 	"log"
 
-	"github.com/PedroSMarcal/todo_list_golang/config"
+	"github.com/PedroSMarcal/todo_list_golang/tools"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -14,7 +14,7 @@ func NewConnectionTODO() *gorm.DB {
 
 func openConnectionTodoDatabase() *gorm.DB {
 
-	databaseConnection, err := gorm.Open(postgres.Open(config.Envs.DSN), &gorm.Config{})
+	databaseConnection, err := gorm.Open(postgres.Open(tools.CreateDSN()), &gorm.Config{})
 	if err != nil {
 		log.Fatalln("Could not connect")
 	}
