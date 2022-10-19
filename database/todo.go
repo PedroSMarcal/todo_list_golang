@@ -25,5 +25,5 @@ func openConnectionTodoDatabase() *gorm.DB {
 func StartMigrations() {
 
 	db := openConnectionTodoDatabase()
-	go runTodoMigration(db)
+	runTodoMigration(db)
 }
