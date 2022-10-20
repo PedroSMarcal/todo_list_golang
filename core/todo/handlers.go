@@ -98,7 +98,6 @@ func CreateTask(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateTask(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
@@ -140,7 +139,6 @@ func UpdateTask(w http.ResponseWriter, r *http.Request) {
 }
 
 func Finish(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
