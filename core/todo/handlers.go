@@ -156,7 +156,7 @@ func Finish(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		io.WriteString(w, "Delete with Success")
+		io.WriteString(w, "FInish with Success")
 
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
