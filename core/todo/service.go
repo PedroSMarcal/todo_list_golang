@@ -34,3 +34,13 @@ func createTodo(req *RequestTask) (*coll.Task, error) {
 
 	return &task, nil
 }
+
+func getTodoById(id string, task *coll.Task) error {
+	oid, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return err
+	}
+
+	repository.GetById(oid, task)
+	return nil
+}

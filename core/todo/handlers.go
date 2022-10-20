@@ -54,7 +54,14 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		io.WriteString(w, "Get "+id)
+		err := getTodoById(id, &task)
+		if err != nil {
+			io.WriteString(w, err.Error())
+			w.WriteHeader(http.StatusNoContent)
+			return
+		}
+
+		json.NewEncoder(w).Encode(&task)
 
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)

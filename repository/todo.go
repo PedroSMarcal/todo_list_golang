@@ -59,6 +59,16 @@ func PostRepository(task *coll.Task) (*mongo.InsertOneResult, error) {
 	return res, nil
 }
 
+func GetById(oid primitive.ObjectID, task *coll.Task) {
+	connection := database.ConnectDatabase()
+	collection := getCollection(connection)
+
+	filter := bson.M{"_id": oid}
+
+	collection.FindOne(context.Background(), filter).Decode(&task)
+
+}
+
 // func (r *todoRepository) GetAnyReposity(key, value string) (*mongo.SingleResult, error) {
 // 	collection := r.getCollection()
 // 	filter := bson.M{key: value}
