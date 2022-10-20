@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 
+	"github.com/PedroSMarcal/todo_list_golang/coll"
 	"github.com/PedroSMarcal/todo_list_golang/config"
 	"github.com/PedroSMarcal/todo_list_golang/database"
 	"go.mongodb.org/mongo-driver/bson"
@@ -46,15 +47,17 @@ func ShowRepository() ([]primitive.M, error) {
 	return result, nil
 }
 
-// func (r *todoRepository) PostRepository(task *coll.Task) (*mongo.InsertOneResult, error) {
-// 	collection := r.getCollection()
+func PostRepository(task *coll.Task) (*mongo.InsertOneResult, error) {
+	connection := database.ConnectDatabase()
+	collection := getCollection(connection)
 
-// 	res, err := collection.InsertOne(context.Background(), task)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	return res, nil
-// }
+	res, err := collection.InsertOne(context.Background(), &task)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
 
 // func (r *todoRepository) GetAnyReposity(key, value string) (*mongo.SingleResult, error) {
 // 	collection := r.getCollection()
