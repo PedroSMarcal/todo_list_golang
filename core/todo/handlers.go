@@ -54,6 +54,11 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 
 		json.NewEncoder(w).Encode(&task)
 
+	case "OPTIONS":
+		w.WriteHeader(http.StatusAccepted)
+		io.WriteString(w, "Bem Vindo")
+		return
+
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		io.WriteString(w, "Not Allowed")
@@ -95,6 +100,11 @@ func CreateTask(w http.ResponseWriter, r *http.Request) {
 		}
 
 		json.NewEncoder(w).Encode(&task)
+
+	case "OPTIONS":
+		w.WriteHeader(http.StatusAccepted)
+		io.WriteString(w, "Bem Vindo")
+		return
 
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
@@ -140,6 +150,11 @@ func UpdateTask(w http.ResponseWriter, r *http.Request) {
 
 		json.NewEncoder(w).Encode(&res)
 
+	case "OPTIONS":
+		w.WriteHeader(http.StatusAccepted)
+		io.WriteString(w, "Bem Vindo")
+		return
+
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		io.WriteString(w, "Not Allowed")
@@ -167,6 +182,11 @@ func Finish(w http.ResponseWriter, r *http.Request) {
 		}
 
 		io.WriteString(w, "FInish with Success")
+
+	case "OPTIONS":
+		w.WriteHeader(http.StatusAccepted)
+		io.WriteString(w, "Bem Vindo")
+		return
 
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
