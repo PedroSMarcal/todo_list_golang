@@ -10,18 +10,22 @@ import (
 )
 
 func HealthCheck(w http.ResponseWriter, r *http.Request) {
-
+	allowedHeaders := "Accept, Content-Type, Content-Length, Accept-Encoding, Authorization,X-CSRF-Token"
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", allowedHeaders)
+	w.Header().Set("Access-Control-Expose-Headers", "Authorization")
 
 	strings.Split(r.RequestURI, "/")
 	io.WriteString(w, "This is my Website\n ")
 }
 
 func GetTask(w http.ResponseWriter, r *http.Request) {
-
+	allowedHeaders := "Accept, Content-Type, Content-Length, Accept-Encoding, Authorization,X-CSRF-Token"
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", allowedHeaders)
+	w.Header().Set("Access-Control-Expose-Headers", "Authorization")
 
 	switch r.Method {
 	case "GET":
@@ -59,9 +63,11 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateTask(w http.ResponseWriter, r *http.Request) {
-
+	allowedHeaders := "Accept, Content-Type, Content-Length, Accept-Encoding, Authorization,X-CSRF-Token"
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", allowedHeaders)
+	w.Header().Set("Access-Control-Expose-Headers", "Authorization")
 
 	switch r.Method {
 	case "POST":
@@ -98,8 +104,11 @@ func CreateTask(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateTask(w http.ResponseWriter, r *http.Request) {
+	allowedHeaders := "Accept, Content-Type, Content-Length, Accept-Encoding, Authorization,X-CSRF-Token"
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", allowedHeaders)
+	w.Header().Set("Access-Control-Expose-Headers", "Authorization")
 
 	switch r.Method {
 	case "PUT":
@@ -139,8 +148,11 @@ func UpdateTask(w http.ResponseWriter, r *http.Request) {
 }
 
 func Finish(w http.ResponseWriter, r *http.Request) {
+	allowedHeaders := "Accept, Content-Type, Content-Length, Accept-Encoding, Authorization,X-CSRF-Token"
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", allowedHeaders)
+	w.Header().Set("Access-Control-Expose-Headers", "Authorization")
 
 	switch r.Method {
 	case "DELETE":
