@@ -28,30 +28,30 @@ func getCollection(r *mongo.Database) *mongo.Collection {
 	return r.Collection(config.EnvVariable.CollectionName)
 }
 
-func ShowRepository() ([]coll.Task, error) {
+func Show() ([]coll.Task, error) {
 	connection := database.ConnectDatabase()
 	collection := getCollection(connection)
 
 	filter := bson.M{}
 	result := []coll.Task{}
 
-	cur, err := collection.Find(context.Background(), filter)
+	cur, err := collection.Find(context.TODO(), filter)
 	if err != nil {
 		return nil, err
 	}
 
-	if err := cur.All(context.Background(), &result); err != nil {
+	if err := cur.All(context.TODO(), &result); err != nil {
 		return nil, err
 	}
 
 	return result, nil
 }
 
-func PostRepository(task *coll.Task) (*mongo.InsertOneResult, error) {
+func PostTodo(task *coll.Task) (*mongo.InsertOneResult, error) {
 	connection := database.ConnectDatabase()
 	collection := getCollection(connection)
 
-	res, err := collection.InsertOne(context.Background(), &task)
+	res, err := collection.InsertOne(context.TODO(), &task)
 	if err != nil {
 		return nil, err
 	}
@@ -59,46 +59,41 @@ func PostRepository(task *coll.Task) (*mongo.InsertOneResult, error) {
 	return res, nil
 }
 
-func GetById(oid primitive.ObjectID, task *coll.Task) {
+func GetByTodoId(oid primitive.ObjectID, task *coll.Task) {
 	connection := database.ConnectDatabase()
 	collection := getCollection(connection)
 
 	filter := bson.M{"_id": oid}
 
-	collection.FindOne(context.Background(), filter).Decode(&task)
-
+	collection.FindOne(context.TODO(), filter).Decode(&task)
 }
 
-// func (r *todoRepository) GetAnyReposity(key, value string) (*mongo.SingleResult, error) {
-// 	collection := r.getCollection()
-// 	filter := bson.M{key: value}
+func UpdateTodoById(oid primitive.ObjectID, content string) (*mongo.UpdateResult, error) {
+	connection := database.ConnectDatabase()
+	collection := getCollection(connection)
 
-// 	coll := collection.FindOne(context.TODO(), filter)
+	filter := bson.M{"_id": oid}
+	fields := bson.M{"$set": bson.M{"content": content}}
 
-// 	return coll, nil
-// }
+	res, err := collection.UpdateOne(context.TODO(), filter, fields)
+	if err != nil {
+		return nil, err
+	}
 
-// func (r *todoRepository) UpdateRepository(element coll.Task) (*mongo.UpdateResult, error) {
-// 	collection := r.getCollection()
-// 	filter := bson.M{element.ID: element.ID}
-// 	fields := bson.M{"$set": element}
+	return res, nil
+}
 
-// 	res, err := collection.UpdateOne(context.Background(), filter, fields)
-// 	if err != nil {
-// 		return nil, err
-// 	}
+func DeleteTodo(oid primitive.ObjectID) error {
+	connection := database.ConnectDatabase()
+	collection := getCollection(connection)
 
-// 	return res, nil
-// }
+	filter := bson.M{"_id": oid}
+	field := bson.M{"$set": bson.M{"finish": true}}
 
-// func (r *todoRepository) DeleteRepository(key, value string) (*mongo.DeleteResult, error) {
-// 	collection := r.getCollection()
-// 	filter := bson.M{key: value}
+	_, err := collection.UpdateOne(context.TODO(), filter, field)
+	if err != nil {
+		return err
+	}
 
-// 	res, err := collection.DeleteOne(context.Background(), filter)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	return res, nil
-// }
+	return nil
+}
