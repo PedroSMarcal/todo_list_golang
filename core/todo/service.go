@@ -8,7 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func getAllTodosService() ([]primitive.M, error) {
+func getAllTodosService() ([]coll.Task, error) {
 	value, err := repository.ShowRepository()
 
 	if err != nil {

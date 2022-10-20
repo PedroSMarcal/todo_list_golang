@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/PedroSMarcal/todo_list_golang/coll"
-	"go.mongodb.org/mongo-driver/bson"
 )
 
 func HealthCheck(w http.ResponseWriter, r *http.Request) {
@@ -38,19 +37,7 @@ func GetTask(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 
-			b, err := bson.Marshal(value)
-			if err != nil {
-				io.WriteString(w, err.Error())
-				return
-			}
-
-			err = bson.Unmarshal(b, &task)
-			if err != nil {
-				io.WriteString(w, err.Error())
-				return
-			}
-
-			json.NewEncoder(w).Encode(&task)
+			json.NewEncoder(w).Encode(&value)
 			return
 		}
 

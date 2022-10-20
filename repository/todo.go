@@ -28,12 +28,12 @@ func getCollection(r *mongo.Database) *mongo.Collection {
 	return r.Collection(config.EnvVariable.CollectionName)
 }
 
-func ShowRepository() ([]primitive.M, error) {
+func ShowRepository() ([]coll.Task, error) {
 	connection := database.ConnectDatabase()
 	collection := getCollection(connection)
 
 	filter := bson.M{}
-	result := []bson.M{}
+	result := []coll.Task{}
 
 	cur, err := collection.Find(context.Background(), filter)
 	if err != nil {
